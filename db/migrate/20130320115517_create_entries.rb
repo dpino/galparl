@@ -1,9 +1,9 @@
 class CreateEntries < ActiveRecord::Migration
   def change
     create_table :entries do |t|
-      t.int :numid
-      t.int :season
-      t.int :date
+      t.integer :numid
+      t.integer :season
+      t.integer :date
       t.string :person
       t.text :body
 
