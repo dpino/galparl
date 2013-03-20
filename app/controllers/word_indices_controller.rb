@@ -14,17 +14,11 @@ class WordIndicesController < ApplicationController
   # GET /word_indices/1.json
   def show
     @word_index = WordIndex.where(:word => params[:id]).first
-    entries = getEntries(@word_index.indice)
 
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @word_index }
     end
-  end
-
-  def getEntries(indice)
-    indice = indice.split(",")
-    return Entry.find(:all, :conditions => ['numid in (?)', indice])
   end
 
 end

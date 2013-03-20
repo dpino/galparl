@@ -7,6 +7,8 @@ Galparl::Application.routes.draw do
 
   resources :entries
 
+  match 'words/:id' => 'word#show'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
