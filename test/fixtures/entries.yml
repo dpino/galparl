@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  numid: 
+  season: 
+  date: 
+  person: MyString
+  body: MyText
+
+two:
+  numid: 
+  season: 
+  date: 
+  person: MyString
+  body: MyText
