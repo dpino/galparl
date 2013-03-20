@@ -1,0 +1,2 @@
+module WordIndicesHelper
+end

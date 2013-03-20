@@ -1,4 +1,6 @@
 Galparl::Application.routes.draw do
+  resources :word_indices
+
   resources :word_counts
 
   resources :entries

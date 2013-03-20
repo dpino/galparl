@@ -1,0 +1,25 @@
+<h1>Listing word_indices</h1>
+
+<table>
+  <tr>
+    <th>Word</th>
+    <th>Indice</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @word_indices.each do |word_index| %>
+  <tr>
+    <td><%= word_index.word %></td>
+    <td><%= word_index.indice %></td>
+    <td><%= link_to 'Show', word_index %></td>
+    <td><%= link_to 'Edit', edit_word_index_path(word_index) %></td>
+    <td><%= link_to 'Destroy', word_index, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Word index', new_word_index_path %>
