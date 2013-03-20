@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Word:</b>
+  <%= @word_count.word %>
+</p>
+
+<p>
+  <b>Count:</b>
+  <%= @word_count.count %>
+</p>
+
+
+<%= link_to 'Edit', edit_word_count_path(@word_count) %> |
+<%= link_to 'Back', word_counts_path %>
