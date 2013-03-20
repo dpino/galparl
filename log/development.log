@@ -27,3 +27,224 @@ Migrating to CreateWordIndices (20130320115621)
 Started GET "/assets/rails.png" for 127.0.0.1 at 2013-03-20 13:37:24 +0100
 Connecting to database specified by database.yml
 Served asset /rails.png - 200 OK (2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-03-20 13:40:15 +0100
+Connecting to database specified by database.yml
+
+ActionController::RoutingError (uninitialized constant WelcomeController):
+  /usr/lib/ruby/vendor_ruby/active_support/inflector/methods.rb:229:in `block in constantize'
+  /usr/lib/ruby/vendor_ruby/active_support/inflector/methods.rb:228:in `each'
+  /usr/lib/ruby/vendor_ruby/active_support/inflector/methods.rb:228:in `constantize'
+  /usr/lib/ruby/vendor_ruby/action_dispatch/routing/route_set.rb:69:in `controller_reference'
+  /usr/lib/ruby/vendor_ruby/action_dispatch/routing/route_set.rb:54:in `controller'
+  /usr/lib/ruby/vendor_ruby/action_dispatch/routing/route_set.rb:32:in `call'
+  /usr/lib/ruby/vendor_ruby/journey/router.rb:68:in `block in call'
+  /usr/lib/ruby/vendor_ruby/journey/router.rb:56:in `each'
+  /usr/lib/ruby/vendor_ruby/journey/router.rb:56:in `call'
+  /usr/lib/ruby/vendor_ruby/action_dispatch/routing/route_set.rb:600:in `call'
+  /usr/lib/ruby/vendor_ruby/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+  /usr/lib/ruby/vendor_ruby/rack/etag.rb:23:in `call'
+  /usr/lib/ruby/vendor_ruby/rack/conditionalget.rb:25:in `call'
+  /usr/lib/ruby/vendor_ruby/action_dispatch/middleware/head.rb:14:in `call'
+  /usr/lib/ruby/vendor_ruby/action_dispatch/middleware/params_parser.rb:21:in `call'
+  /usr/lib/ruby/vendor_ruby/action_dispatch/middleware/flash.rb:242:in `call'
+  /usr/lib/ruby/vendor_ruby/rack/session/abstract/id.rb:205:in `context'
+  /usr/lib/ruby/vendor_ruby/rack/session/abstract/id.rb:200:in `call'
+  /usr/lib/ruby/vendor_ruby/action_dispatch/middleware/cookies.rb:338:in `call'
+  /usr/lib/ruby/vendor_ruby/active_record/query_cache.rb:64:in `call'
+  /usr/lib/ruby/vendor_ruby/active_record/connection_adapters/abstract/connection_pool.rb:473:in `call'
+  /usr/lib/ruby/vendor_ruby/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+  /usr/lib/ruby/vendor_ruby/active_support/callbacks.rb:405:in `_run__4365527436715065874__call__1156817448462062901__callbacks'
+  /usr/lib/ruby/vendor_ruby/active_support/callbacks.rb:405:in `__run_callback'
+  /usr/lib/ruby/vendor_ruby/active_support/callbacks.rb:385:in `_run_call_callbacks'
+  /usr/lib/ruby/vendor_ruby/active_support/callbacks.rb:81:in `run_callbacks'
+  /usr/lib/ruby/vendor_ruby/action_dispatch/middleware/callbacks.rb:27:in `call'
+  /usr/lib/ruby/vendor_ruby/action_dispatch/middleware/reloader.rb:65:in `call'
+  /usr/lib/ruby/vendor_ruby/action_dispatch/middleware/remote_ip.rb:31:in `call'
+  /usr/lib/ruby/vendor_ruby/action_dispatch/middleware/debug_exceptions.rb:16:in `call'
+  /usr/lib/ruby/vendor_ruby/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  /usr/lib/ruby/vendor_ruby/rails/rack/logger.rb:26:in `call_app'
+  /usr/lib/ruby/vendor_ruby/rails/rack/logger.rb:16:in `call'
+  /usr/lib/ruby/vendor_ruby/action_dispatch/middleware/request_id.rb:22:in `call'
+  /usr/lib/ruby/vendor_ruby/rack/methodoverride.rb:21:in `call'
+  /usr/lib/ruby/vendor_ruby/rack/runtime.rb:17:in `call'
+  /usr/lib/ruby/vendor_ruby/active_support/cache/strategy/local_cache.rb:72:in `call'
+  /usr/lib/ruby/vendor_ruby/rack/lock.rb:15:in `call'
+  /usr/lib/ruby/vendor_ruby/action_dispatch/middleware/static.rb:62:in `call'
+  /usr/lib/ruby/vendor_ruby/rails/engine.rb:479:in `call'
+  /usr/lib/ruby/vendor_ruby/rails/application.rb:220:in `call'
+  /usr/lib/ruby/vendor_ruby/rack/content_length.rb:14:in `call'
+  /usr/lib/ruby/vendor_ruby/rails/rack/log_tailer.rb:17:in `call'
+  /usr/lib/ruby/vendor_ruby/thin/connection.rb:80:in `block in pre_process'
+  /usr/lib/ruby/vendor_ruby/thin/connection.rb:78:in `catch'
+  /usr/lib/ruby/vendor_ruby/thin/connection.rb:78:in `pre_process'
+  /usr/lib/ruby/vendor_ruby/thin/connection.rb:53:in `process'
+  /usr/lib/ruby/vendor_ruby/thin/connection.rb:38:in `receive_data'
+  /usr/lib/ruby/vendor_ruby/eventmachine.rb:257:in `run_machine'
+  /usr/lib/ruby/vendor_ruby/eventmachine.rb:257:in `run'
+  /usr/lib/ruby/vendor_ruby/thin/backends/base.rb:61:in `start'
+  /usr/lib/ruby/vendor_ruby/thin/server.rb:159:in `start'
+  /usr/lib/ruby/vendor_ruby/rack/handler/thin.rb:13:in `run'
+  /usr/lib/ruby/vendor_ruby/rack/server.rb:265:in `start'
+  /usr/lib/ruby/vendor_ruby/rails/commands/server.rb:70:in `start'
+  /usr/lib/ruby/vendor_ruby/rails/commands.rb:55:in `block in <top (required)>'
+  /usr/lib/ruby/vendor_ruby/rails/commands.rb:50:in `tap'
+  /usr/lib/ruby/vendor_ruby/rails/commands.rb:50:in `<top (required)>'
+  script/rails:6:in `require'
+  script/rails:6:in `<main>'
+
+
+  Rendered /usr/lib/ruby/vendor_ruby/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (1.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-03-20 13:40:47 +0100
+Connecting to database specified by database.yml
+
+ActionController::RoutingError (No route matches [GET] "/"):
+  /usr/lib/ruby/vendor_ruby/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  /usr/lib/ruby/vendor_ruby/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  /usr/lib/ruby/vendor_ruby/rails/rack/logger.rb:26:in `call_app'
+  /usr/lib/ruby/vendor_ruby/rails/rack/logger.rb:16:in `call'
+  /usr/lib/ruby/vendor_ruby/action_dispatch/middleware/request_id.rb:22:in `call'
+  /usr/lib/ruby/vendor_ruby/rack/methodoverride.rb:21:in `call'
+  /usr/lib/ruby/vendor_ruby/rack/runtime.rb:17:in `call'
+  /usr/lib/ruby/vendor_ruby/active_support/cache/strategy/local_cache.rb:72:in `call'
+  /usr/lib/ruby/vendor_ruby/rack/lock.rb:15:in `call'
+  /usr/lib/ruby/vendor_ruby/action_dispatch/middleware/static.rb:62:in `call'
+  /usr/lib/ruby/vendor_ruby/rails/engine.rb:479:in `call'
+  /usr/lib/ruby/vendor_ruby/rails/application.rb:220:in `call'
+  /usr/lib/ruby/vendor_ruby/rack/content_length.rb:14:in `call'
+  /usr/lib/ruby/vendor_ruby/rails/rack/log_tailer.rb:17:in `call'
+  /usr/lib/ruby/vendor_ruby/thin/connection.rb:80:in `block in pre_process'
+  /usr/lib/ruby/vendor_ruby/thin/connection.rb:78:in `catch'
+  /usr/lib/ruby/vendor_ruby/thin/connection.rb:78:in `pre_process'
+  /usr/lib/ruby/vendor_ruby/thin/connection.rb:53:in `process'
+  /usr/lib/ruby/vendor_ruby/thin/connection.rb:38:in `receive_data'
+  /usr/lib/ruby/vendor_ruby/eventmachine.rb:257:in `run_machine'
+  /usr/lib/ruby/vendor_ruby/eventmachine.rb:257:in `run'
+  /usr/lib/ruby/vendor_ruby/thin/backends/base.rb:61:in `start'
+  /usr/lib/ruby/vendor_ruby/thin/server.rb:159:in `start'
+  /usr/lib/ruby/vendor_ruby/rack/handler/thin.rb:13:in `run'
+  /usr/lib/ruby/vendor_ruby/rack/server.rb:265:in `start'
+  /usr/lib/ruby/vendor_ruby/rails/commands/server.rb:70:in `start'
+  /usr/lib/ruby/vendor_ruby/rails/commands.rb:55:in `block in <top (required)>'
+  /usr/lib/ruby/vendor_ruby/rails/commands.rb:50:in `tap'
+  /usr/lib/ruby/vendor_ruby/rails/commands.rb:50:in `<top (required)>'
+  script/rails:6:in `require'
+  script/rails:6:in `<main>'
+
+
+  Rendered /usr/lib/ruby/vendor_ruby/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (1.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-03-20 13:47:21 +0100
+Connecting to database specified by database.yml
+
+ActionController::RoutingError (No route matches [GET] "/"):
+  /usr/lib/ruby/vendor_ruby/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  /usr/lib/ruby/vendor_ruby/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  /usr/lib/ruby/vendor_ruby/rails/rack/logger.rb:26:in `call_app'
+  /usr/lib/ruby/vendor_ruby/rails/rack/logger.rb:16:in `call'
+  /usr/lib/ruby/vendor_ruby/action_dispatch/middleware/request_id.rb:22:in `call'
+  /usr/lib/ruby/vendor_ruby/rack/methodoverride.rb:21:in `call'
+  /usr/lib/ruby/vendor_ruby/rack/runtime.rb:17:in `call'
+  /usr/lib/ruby/vendor_ruby/active_support/cache/strategy/local_cache.rb:72:in `call'
+  /usr/lib/ruby/vendor_ruby/rack/lock.rb:15:in `call'
+  /usr/lib/ruby/vendor_ruby/action_dispatch/middleware/static.rb:62:in `call'
+  /usr/lib/ruby/vendor_ruby/rails/engine.rb:479:in `call'
+  /usr/lib/ruby/vendor_ruby/rails/application.rb:220:in `call'
+  /usr/lib/ruby/vendor_ruby/rack/content_length.rb:14:in `call'
+  /usr/lib/ruby/vendor_ruby/rails/rack/log_tailer.rb:17:in `call'
+  /usr/lib/ruby/vendor_ruby/thin/connection.rb:80:in `block in pre_process'
+  /usr/lib/ruby/vendor_ruby/thin/connection.rb:78:in `catch'
+  /usr/lib/ruby/vendor_ruby/thin/connection.rb:78:in `pre_process'
+  /usr/lib/ruby/vendor_ruby/thin/connection.rb:53:in `process'
+  /usr/lib/ruby/vendor_ruby/thin/connection.rb:38:in `receive_data'
+  /usr/lib/ruby/vendor_ruby/eventmachine.rb:257:in `run_machine'
+  /usr/lib/ruby/vendor_ruby/eventmachine.rb:257:in `run'
+  /usr/lib/ruby/vendor_ruby/thin/backends/base.rb:61:in `start'
+  /usr/lib/ruby/vendor_ruby/thin/server.rb:159:in `start'
+  /usr/lib/ruby/vendor_ruby/rack/handler/thin.rb:13:in `run'
+  /usr/lib/ruby/vendor_ruby/rack/server.rb:265:in `start'
+  /usr/lib/ruby/vendor_ruby/rails/commands/server.rb:70:in `start'
+  /usr/lib/ruby/vendor_ruby/rails/commands.rb:55:in `block in <top (required)>'
+  /usr/lib/ruby/vendor_ruby/rails/commands.rb:50:in `tap'
+  /usr/lib/ruby/vendor_ruby/rails/commands.rb:50:in `<top (required)>'
+  script/rails:6:in `require'
+  script/rails:6:in `<main>'
+
+
+  Rendered /usr/lib/ruby/vendor_ruby/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (1.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-03-20 13:50:53 +0100
+Connecting to database specified by database.yml
+Processing by PagesController#home as HTML
+  Rendered pages/home.html.erb within layouts/application (1.3ms)
+Compiled entries.css  (4ms)  (pid 20007)
+Compiled pages.css  (0ms)  (pid 20007)
+Compiled scaffolds.css  (7ms)  (pid 20007)
+Compiled word_counts.css  (0ms)  (pid 20007)
+Compiled word_indices.css  (0ms)  (pid 20007)
+Compiled application.css  (46ms)  (pid 20007)
+Compiled jquery.js  (1ms)  (pid 20007)
+Compiled jquery_ujs.js  (0ms)  (pid 20007)
+Compiled entries.js  (121ms)  (pid 20007)
+Compiled pages.js  (89ms)  (pid 20007)
+Compiled word_counts.js  (76ms)  (pid 20007)
+Compiled word_indices.js  (80ms)  (pid 20007)
+Compiled application.js  (447ms)  (pid 20007)
+Completed 200 OK in 572ms (Views: 572.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-03-20 13:50:54 +0100
+Served asset /application.css - 200 OK (6ms)
+
+
+Started GET "/assets/entries.css?body=1" for 127.0.0.1 at 2013-03-20 13:50:54 +0100
+Served asset /entries.css - 200 OK (3ms)
+
+
+Started GET "/assets/pages.css?body=1" for 127.0.0.1 at 2013-03-20 13:50:54 +0100
+Served asset /pages.css - 200 OK (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-03-20 13:50:54 +0100
+Served asset /scaffolds.css - 200 OK (0ms)
+
+
+Started GET "/assets/word_counts.css?body=1" for 127.0.0.1 at 2013-03-20 13:50:54 +0100
+Served asset /word_counts.css - 200 OK (0ms)
+
+
+Started GET "/assets/word_indices.css?body=1" for 127.0.0.1 at 2013-03-20 13:50:54 +0100
+Served asset /word_indices.css - 200 OK (1ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-03-20 13:50:54 +0100
+Served asset /jquery.js - 200 OK (1ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-03-20 13:50:54 +0100
+Served asset /jquery_ujs.js - 200 OK (2ms)
+
+
+Started GET "/assets/entries.js?body=1" for 127.0.0.1 at 2013-03-20 13:50:54 +0100
+Served asset /entries.js - 200 OK (1ms)
+
+
+Started GET "/assets/pages.js?body=1" for 127.0.0.1 at 2013-03-20 13:50:54 +0100
+Served asset /pages.js - 200 OK (1ms)
+
+
+Started GET "/assets/word_counts.js?body=1" for 127.0.0.1 at 2013-03-20 13:50:54 +0100
+Served asset /word_counts.js - 200 OK (1ms)
+
+
+Started GET "/assets/word_indices.js?body=1" for 127.0.0.1 at 2013-03-20 13:50:54 +0100
+Served asset /word_indices.js - 200 OK (1ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-03-20 13:50:54 +0100
+Served asset /application.js - 200 OK (5ms)
