@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Word:</b>
+  <%= @word_index.word %>
+</p>
+
+<p>
+  <b>Indice:</b>
+  <%= @word_index.indice %>
+</p>
+
+
+<%= link_to 'Edit', edit_word_index_path(@word_index) %> |
+<%= link_to 'Back', word_indices_path %>
