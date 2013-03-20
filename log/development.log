@@ -1,3 +1,29 @@
 Connecting to database specified by database.yml
 Connecting to database specified by database.yml
 Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (5.9ms)[0m  [1mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (22.8ms)[0m  CREATE UNIQUE INDEX `unique_schema_migrations` ON `schema_migrations` (`version`)
+  [1m[36m (0.5ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations` [0m
+Migrating to CreateEntries (20130320115517)
+Connecting to database specified by database.yml
+  [1m[36m (0.2ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations` [0m
+Migrating to CreateEntries (20130320115517)
+Connecting to database specified by database.yml
+  [1m[36m (0.3ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations` [0m
+Migrating to CreateEntries (20130320115517)
+  [1m[35m (5.2ms)[0m  CREATE TABLE `entries` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `numid` int(11), `season` int(11), `date` int(11), `person` varchar(255), `body` text, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB
+  [1m[36m (0.8ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20130320115517')[0m
+Migrating to CreateWordCounts (20130320115546)
+  [1m[35m (4.7ms)[0m  CREATE TABLE `word_counts` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `word` varchar(255), `count` int(11), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB
+  [1m[36m (1.6ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20130320115546')[0m
+Migrating to CreateWordIndices (20130320115621)
+  [1m[35m (2.5ms)[0m  CREATE TABLE `word_indices` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `word` varchar(255), `indice` text, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB
+  [1m[36m (0.4ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20130320115621')[0m
+  [1m[35m (0.4ms)[0m  SELECT `schema_migrations`.`version` FROM `schema_migrations` 
+
+
+Started GET "/assets/rails.png" for 127.0.0.1 at 2013-03-20 13:37:24 +0100
+Connecting to database specified by database.yml
+Served asset /rails.png - 200 OK (2ms)
