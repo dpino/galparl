@@ -248,3 +248,158 @@ Served asset /word_indices.js - 200 OK (1ms)
 
 Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-03-20 13:50:54 +0100
 Served asset /application.js - 200 OK (5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-03-20 16:21:57 +0100
+Connecting to database specified by database.yml
+Processing by PagesController#home as HTML
+  Rendered pages/home.html.erb within layouts/application (1.3ms)
+Completed 200 OK in 40ms (Views: 40.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-03-20 16:21:57 +0100
+Served asset /application.css - 200 OK (6ms)
+
+
+Started GET "/assets/entries.css?body=1" for 127.0.0.1 at 2013-03-20 16:21:57 +0100
+Served asset /entries.css - 200 OK (1ms)
+
+
+Started GET "/assets/pages.css?body=1" for 127.0.0.1 at 2013-03-20 16:21:57 +0100
+Served asset /pages.css - 200 OK (1ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-03-20 16:21:57 +0100
+Served asset /jquery.js - 200 OK (1ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-03-20 16:21:57 +0100
+Served asset /scaffolds.css - 200 OK (1ms)
+
+
+Started GET "/assets/word_counts.css?body=1" for 127.0.0.1 at 2013-03-20 16:21:57 +0100
+Served asset /word_counts.css - 200 OK (1ms)
+
+
+Started GET "/assets/word_indices.css?body=1" for 127.0.0.1 at 2013-03-20 16:21:57 +0100
+Served asset /word_indices.css - 200 OK (1ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-03-20 16:21:57 +0100
+Served asset /jquery_ujs.js - 200 OK (1ms)
+
+
+Started GET "/assets/entries.js?body=1" for 127.0.0.1 at 2013-03-20 16:21:57 +0100
+Served asset /entries.js - 200 OK (0ms)
+
+
+Started GET "/assets/pages.js?body=1" for 127.0.0.1 at 2013-03-20 16:21:57 +0100
+Served asset /pages.js - 200 OK (1ms)
+
+
+Started GET "/assets/word_indices.js?body=1" for 127.0.0.1 at 2013-03-20 16:21:57 +0100
+Served asset /word_indices.js - 200 OK (1ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-03-20 16:21:57 +0100
+Served asset /application.js - 200 OK (4ms)
+
+
+Started GET "/assets/word_counts.js?body=1" for 127.0.0.1 at 2013-03-20 16:21:57 +0100
+Served asset /word_counts.js - 200 OK (0ms)
+
+
+Started GET "/word_counts" for 127.0.0.1 at 2013-03-20 16:22:36 +0100
+Processing by WordCountsController#index as HTML
+  [1m[36mWordCount Load (19.2ms)[0m  [1mSELECT `word_counts`.* FROM `word_counts` [0m
+  [1m[35mEXPLAIN (1.4ms)[0m  EXPLAIN SELECT `word_counts`.* FROM `word_counts` 
+EXPLAIN for: SELECT `word_counts`.* FROM `word_counts` 
++----+-------------+-------------+------+---------------+------+---------+------+-------+-------+
+| id | select_type | table       | type | possible_keys | key  | key_len | ref  | rows  | Extra |
++----+-------------+-------------+------+---------------+------+---------+------+-------+-------+
+|  1 | SIMPLE      | word_counts | ALL  | NULL          | NULL | NULL    | NULL | 19544 |       |
++----+-------------+-------------+------+---------------+------+---------+------+-------+-------+
+1 row in set (0.00 sec)
+
+  Rendered word_counts/index.html.erb within layouts/application (13437.9ms)
+Completed 200 OK in 14163ms (Views: 13481.0ms | ActiveRecord: 22.5ms)
+
+
+Started GET "//word_counts/1.json" for 127.0.0.1 at 2013-03-20 16:30:36 +0100
+Processing by WordCountsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mWordCount Load (0.5ms)[0m  [1mSELECT `word_counts`.* FROM `word_counts` WHERE `word_counts`.`id` = 1 LIMIT 1[0m
+Completed 200 OK in 9ms (Views: 0.3ms | ActiveRecord: 2.8ms)
+
+
+Started GET "//word_counts/1.json" for 127.0.0.1 at 2013-03-20 16:32:07 +0100
+Processing by WordCountsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mWordCount Load (0.3ms)[0m  SELECT `word_counts`.* FROM `word_counts` WHERE `word_counts`.`id` = 1 LIMIT 1
+Completed 200 OK in 4ms (Views: 0.7ms | ActiveRecord: 0.3ms)
+
+
+Started GET "//word_counts/1.json" for 127.0.0.1 at 2013-03-20 16:32:11 +0100
+Processing by WordCountsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mWordCount Load (0.3ms)[0m  [1mSELECT `word_counts`.* FROM `word_counts` WHERE `word_counts`.`id` = 1 LIMIT 1[0m
+Completed 200 OK in 3ms (Views: 0.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "//word_counts/1.json" for 127.0.0.1 at 2013-03-20 16:35:55 +0100
+Processing by WordCountsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mWordCount Load (0.5ms)[0m  SELECT `word_counts`.* FROM `word_counts` WHERE `word_counts`.`id` = 1 LIMIT 1
+Completed 200 OK in 2ms (Views: 0.4ms | ActiveRecord: 0.5ms)
+
+
+Started GET "//word_counts/1.json" for 127.0.0.1 at 2013-03-20 16:36:56 +0100
+Processing by WordCountsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mWordCount Load (0.2ms)[0m  [1mSELECT `word_counts`.* FROM `word_counts` WHERE `word_counts`.`id` = 1 LIMIT 1[0m
+Completed 200 OK in 3ms (Views: 0.7ms | ActiveRecord: 0.2ms)
+
+
+Started GET "//word_indices/1.json" for 127.0.0.1 at 2013-03-20 16:37:04 +0100
+Processing by WordIndicesController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mWordIndex Load (0.6ms)[0m  SELECT `word_indices`.* FROM `word_indices` WHERE `word_indices`.`id` = 1 LIMIT 1
+Completed 200 OK in 17ms (Views: 0.4ms | ActiveRecord: 1.8ms)
+
+
+Started GET "//entries/1.json" for 127.0.0.1 at 2013-03-20 16:37:15 +0100
+Processing by EntriesController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mEntry Load (0.4ms)[0m  [1mSELECT `entries`.* FROM `entries` WHERE `entries`.`id` = 1 LIMIT 1[0m
+Completed 200 OK in 57ms (Views: 0.4ms | ActiveRecord: 2.4ms)
+
+
+Started GET "//word_counts/1.json" for 127.0.0.1 at 2013-03-20 16:39:58 +0100
+Processing by WordCountsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mWordCount Load (0.4ms)[0m  SELECT `word_counts`.* FROM `word_counts` WHERE `word_counts`.`numid` = '1'
+Mysql2::Error: Unknown column 'word_counts.numid' in 'where clause': SELECT `word_counts`.* FROM `word_counts`  WHERE `word_counts`.`numid` = '1'
+Completed 500 Internal Server Error in 7ms
+
+ActiveRecord::StatementInvalid (Mysql2::Error: Unknown column 'word_counts.numid' in 'where clause': SELECT `word_counts`.* FROM `word_counts`  WHERE `word_counts`.`numid` = '1'):
+  app/controllers/word_counts_controller.rb:21:in `block (2 levels) in show'
+  app/controllers/word_counts_controller.rb:19:in `show'
+
+
+  Rendered /usr/lib/ruby/vendor_ruby/action_dispatch/middleware/templates/rescues/_trace.erb (0.9ms)
+  Rendered /usr/lib/ruby/vendor_ruby/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.6ms)
+  Rendered /usr/lib/ruby/vendor_ruby/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (4.6ms)
+
+
+Started GET "//word_counts/abaixo.json" for 127.0.0.1 at 2013-03-20 16:41:34 +0100
+Processing by WordCountsController#show as JSON
+  Parameters: {"id"=>"abaixo"}
+  [1m[36mWordCount Load (16.4ms)[0m  [1mSELECT `word_counts`.* FROM `word_counts` WHERE `word_counts`.`word` = 'abaixo'[0m
+Completed 200 OK in 26ms (Views: 6.4ms | ActiveRecord: 18.6ms)
+
+
+Started GET "//word_counts/abadín.json" for 127.0.0.1 at 2013-03-20 16:41:54 +0100
+Processing by WordCountsController#show as JSON
+  Parameters: {"id"=>"abadín"}
+  [1m[35mWordCount Load (9.7ms)[0m  SELECT `word_counts`.* FROM `word_counts` WHERE `word_counts`.`word` = 'abadín'
+Completed 200 OK in 12ms (Views: 1.8ms | ActiveRecord: 9.7ms)
