@@ -1,4 +1,6 @@
 Galparl::Application.routes.draw do
+  resources :word_counts
+
   resources :entries
 
   # The priority is based upon order of creation:
