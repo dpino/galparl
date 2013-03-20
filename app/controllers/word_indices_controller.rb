@@ -13,7 +13,7 @@ class WordIndicesController < ApplicationController
   # GET /word_indices/1
   # GET /word_indices/1.json
   def show
-    @word_index = WordIndex.find(params[:id])
+    @word_index = WordIndex.where(:word => params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
