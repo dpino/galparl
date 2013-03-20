@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Numid:</b>
+  <%= @entry.numid %>
+</p>
+
+<p>
+  <b>Season:</b>
+  <%= @entry.season %>
+</p>
+
+<p>
+  <b>Date:</b>
+  <%= @entry.date %>
+</p>
+
+<p>
+  <b>Person:</b>
+  <%= @entry.person %>
+</p>
+
+<p>
+  <b>Body:</b>
+  <%= @entry.body %>
+</p>
+
+
+<%= link_to 'Edit', edit_entry_path(@entry) %> |
+<%= link_to 'Back', entries_path %>
