@@ -10,7 +10,7 @@ function EntryLoader(container) {
     this.container = container; 
 }
 
-EntryLoader.URL = "http://localhost:3000/words/###word###.json";
+EntryLoader.URL = "/words/###word###.json";
 
 EntryLoader.prototype.renderWordEntries = function(word) {
     var url = EntryLoader.URL.replace('###word###', word); 

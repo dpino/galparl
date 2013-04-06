@@ -2,6 +2,7 @@ Galparl::Application.routes.draw do
   get "pages/home"
 
   match '/loadcomments' => 'pages#loadcomments'
+  match '/bubblechart' => 'pages#bubblechart'
 
   resources :word_indices
 

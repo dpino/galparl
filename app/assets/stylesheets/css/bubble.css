@@ -6,9 +6,9 @@ a, a:visited {
   color:#333;
 }
 
-#container {
+#bubble-container {
   padding-top:20px;
-  width: 980px;
+  width: 100%
   border-left: 2px #ddd solid;
   border-right: 2px #ddd solid;
 }
