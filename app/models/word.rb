@@ -9,7 +9,7 @@ class Word
         @count = WordCount.where(:word => word).first.count
         @word = word
     else 
-        @error = "No se atoparon resultados";
+        @error = "No results found for <i>'#{word}'</i>";
     end
   end
 
