@@ -1,12 +1,16 @@
 class Word 
-  # attr_accessible :count, :word, :indices, :entries
+  # attr_accessible :count, :word, :indices, :entries, :error
    
   def initialize(word)
     word_index = WordIndex.where(:word => word).first
 
-    @entries = getEntries(word_index.indice)
-    @count = WordCount.where(:word => word).first.count
-    @word = word
+    if (word_index != nil) 
+        @entries = getEntries(word_index.indice)
+        @count = WordCount.where(:word => word).first.count
+        @word = word
+    else 
+        @error = "No se atoparon resultados";
+    end
   end
 
   def getEntries(indice)

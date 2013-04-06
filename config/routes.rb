@@ -1,6 +1,8 @@
 Galparl::Application.routes.draw do
   get "pages/home"
 
+  match '/loadcomments' => 'pages#loadcomments'
+
   resources :word_indices
 
   resources :word_counts

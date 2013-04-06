@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <style type="text/css">
+
+        body {
+            font-family: "Helvetica" "Arial" "Verdana";
+            font-size: 12px;
+        }
+
+        #word {
+            padding: 3px;
+            size: 32px;
+            margin-bottom: 10px;
+        }
+
+        #container {
+            width: 800px;
+        }
+
+        div.left {
+            border-top: 1px solid #bbb;
+            float: left;
+            width: 375px;
+            padding-top: 3px;
+        }
+
+        div.right {
+            border-top: 1px solid #bbb;
+            float: right;
+            width: 375px;
+            padding-top: 3px;
+        }
+
+        div.comment span.date {
+            margin-bottom: 2px;
+            display: block;
+            font-size: 10px;
+            color: #bbb;
+            text-align: justify;
+        }
+
+        div.comment span.person {
+            display: block;
+            font-weight: bold;
+        }
+
+        span.highlight {
+            background: #ccc;
+            padding: 1px 3px;
+        }
+
+    </style>
+
+</head>
+<body>
+
+    <input id="word" type="text" placeholder="Add word"/>
+
+    <div id="container">
+    </div>
+
+</body>
+
+<!--
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+-->
+<script src="jquery.min.js"></script>
+
+<script type="text/javascript">
+    var CR = 13;
+    var words = [];
+    
+    $(document).ready(function() {
+        $('#word').keydown(function(e) {
+            if (e.keyCode == CR) {
+                loadComments(this.value)
+                this.value = "";
+            }
+        });
+    });
+
+    function loadComments(word) {
+        var url = "http://localhost:3000/words/" + word + ".json"
+        $.get(url, function(data) {
+            clear("#container");
+            if (data.error) {
+                $('#container').append("<p>" + data.error + "</p>");   
+                return;
+            }
+            var left = $("<div class='left'></div>");
+            var right = $("<div class='right'></div>");
+
+            var entries = data.entries;
+            var half = entries.length / 2;
+            for (var i = 0; i < entries.length; i++) {
+                var text = formatComment(data.word, entries[i]);
+                if (i < half) {
+                    left.append(text);
+                } else {
+                    right.append(text);
+                }
+            }
+            $('#container').append(left);
+            $('#container').append(right);
+        });
+
+        function clear(str) {
+            var element = $(str);
+            element.html("");
+        }
+    }
+
+    function appendToContainer(comment) {
+        $("#container").append($(comment));
+    }
+
+    function formatComment(word, comment) {
+        var html = 
+            "<div class='comment'>" +
+                "<span class='person'>###PERSON###</span>" +
+                "<span class='date'>###DATE###</span>" +
+                "<div>###BODY###</div>" + 
+                "<hr/>" +
+            "</div>";
+        html = html.replace("###PERSON###", comment.person);  
+        html = html.replace("###DATE###", formatDate(comment.date));  
+        html = html.replace("###BODY###", formatBody(word, comment.body));  
+
+        return html;
+    }
+
+    function formatDate(tstamp) {
+        var date = new Date(tstamp * 1000);
+        var day = date.getUTCDate();
+        var month = date.getUTCMonth() + 1;
+        var year = date.getUTCFullYear();
+        return day + "/" + month + "/" + year;
+    }
+
+    function formatBody(word, body) {
+        var excerpt = wrapWord(word, body);
+        return excerpt.replace(word, "<span class='highlight'>" + word + "</span>");
+    }
+
+    // Return the sentence that contains the word
+    function wrapWord(word, body) {
+        var pos = body.indexOf(word);
+        var start = rindex(body, ".?!", pos);
+        var end = index(body, ".?!", pos);
+        // var end = body.indexOf('.', pos) + 1;
+        // var end = body.substr(pos).search(/[.?!]/); // 
+        return body.substring(start, end);
+    }
+
+    function rindex(str, chars, pos) {
+        if (pos === undefined) pos = str.length;
+        for (var i = pos; i > 0; i--) {
+            for (var j = 0; j < chars.length; j++) {
+                if (str[i] == chars[j]) {
+                    return i + 1;
+                }
+            }
+        }
+        return -1;
+    }
+
+    function index(str, chars, pos) {
+        if (pos === undefined) pos = 0
+        for (var i = pos; i < str.length; i++) {
+            for (var j = 0; j < chars.length; j++) {
+                if (str[i] == chars[j]) {
+                    return i + 1;
+                }
+            }
+        }
+        return -1;
+    }
+
+</script>
+</html>

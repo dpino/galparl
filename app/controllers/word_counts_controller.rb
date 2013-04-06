@@ -13,7 +13,7 @@ class WordCountsController < ApplicationController
   # GET /word_counts/1
   # GET /word_counts/1.json
   def show
-    @word_count = WordCount.where(:word => params[:id])
+    @word_count = WordCount.where(:word => params[:id]).first
 
     respond_to do |format|
       format.html # show.html.erb
