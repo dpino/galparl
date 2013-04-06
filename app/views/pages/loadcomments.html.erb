@@ -3,41 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <title></title>
-    <%= stylesheet_link_tag 'styles' %>
 </head>
+
 <body>
-
     <input id="word" type="text" placeholder="Add word"/>
-
-    <div id="container">
-    </div>
-
+    <div id="container"></div>
 </body>
 
-<!--
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
--->
-<script src="jquery.min.js"></script>
-
 <script type="text/javascript">
-    var CR = 13;
-    var words = [];
     
     $(document).ready(function() {
+        var CR = 13;
+
         $('#word').keydown(function(e) {
             if (e.keyCode == CR) {
-                loadComments(this.value)
-                this.value = "";
+                renderWordEntries(this.value);
+                clearTextbox(this);
+            }
+
+            function renderWordEntries(word) {
+                var loader = new EntryLoader($('#container'));
+                loader.renderWordEntries(word);
+            }
+
+            function clearTextbox(textbox) {
+                textbox.value = "";
             }
         });
     });
 
-    function loadComments(word) {
-        var url = "http://localhost:3000/words/" + word + ".json"
+    function EntryLoader(container) {
+        this.container = container; 
+    }
+
+    EntryLoader.URL = "http://localhost:3000/words/###word###.json";
+
+    EntryLoader.prototype.renderWordEntries = function(word) {
+        var url = EntryLoader.URL.replace('###word###', word); 
+        var entryLoader = this;
         $.get(url, function(data) {
-            clear("#container");
+            entryLoader.clear();
             if (data.error) {
-                $('#container').append("<p>" + data.error + "</p>");   
+                this.emptyResult(data.error);
                 return;
             }
             var left = $("<div class='left'></div>");
@@ -46,28 +53,31 @@
             var entries = data.entries;
             var half = entries.length / 2;
             for (var i = 0; i < entries.length; i++) {
-                var text = formatComment(data.word, entries[i]);
+                var entry = entryLoader.formatEntry(data.word, entries[i]);
                 if (i < half) {
-                    left.append(text);
+                    left.append(entry);
                 } else {
-                    right.append(text);
+                    right.append(entry);
                 }
             }
-            $('#container').append(left);
-            $('#container').append(right);
+            entryLoader.append(left);
+            entryLoader.append(right);
         });
+    };
 
-        function clear(str) {
-            var element = $(str);
-            element.html("");
-        }
+    EntryLoader.prototype.clear = function() {
+        this.container.html("");
     }
 
-    function appendToContainer(comment) {
-        $("#container").append($(comment));
+    EntryLoader.prototype.emptyResult = function(msg) {
+        this.container("<p>" + msg + "</p>");
     }
 
-    function formatComment(word, comment) {
+    EntryLoader.prototype.append = function(child) {
+        this.container.append(child);
+    }
+
+    EntryLoader.prototype.formatEntry = function(word, entry) {
         var html = 
             "<div class='comment'>" +
                 "<span class='person'>###PERSON###</span>" +
@@ -75,14 +85,14 @@
                 "<div>###BODY###</div>" + 
                 "<hr/>" +
             "</div>";
-        html = html.replace("###PERSON###", comment.person);  
-        html = html.replace("###DATE###", formatDate(comment.date));  
-        html = html.replace("###BODY###", formatBody(word, comment.body));  
+        html = html.replace("###PERSON###", entry.person);  
+        html = html.replace("###DATE###", this.formatDate(entry.date));  
+        html = html.replace("###BODY###", this.formatBody(word, entry.body));  
 
         return html;
     }
 
-    function formatDate(tstamp) {
+    EntryLoader.prototype.formatDate = function(tstamp) {
         var date = new Date(tstamp * 1000);
         var day = date.getUTCDate();
         var month = date.getUTCMonth() + 1;
@@ -90,43 +100,41 @@
         return day + "/" + month + "/" + year;
     }
 
-    function formatBody(word, body) {
+    EntryLoader.prototype.formatBody = function(word, body) {
         var excerpt = wrapWord(word, body);
         return excerpt.replace(word, "<span class='highlight'>" + word + "</span>");
-    }
 
-    // Return the sentence that contains the word
-    function wrapWord(word, body) {
-        var pos = body.indexOf(word);
-        var start = rindex(body, ".?!", pos);
-        var end = index(body, ".?!", pos);
-        // var end = body.indexOf('.', pos) + 1;
-        // var end = body.substr(pos).search(/[.?!]/); // 
-        return body.substring(start, end);
-    }
+        // Return the sentence that contains the word
+        function wrapWord (word, body) {
+            var pos = body.indexOf(word);
+            var start = rindex(body, ".?!", pos);
+            var end = index(body, ".?!", pos);
+            return body.substring(start, end);
+        }
 
-    function rindex(str, chars, pos) {
-        if (pos === undefined) pos = str.length;
-        for (var i = pos; i > 0; i--) {
-            for (var j = 0; j < chars.length; j++) {
-                if (str[i] == chars[j]) {
-                    return i + 1;
+        function rindex(str, chars, pos) {
+            if (pos === undefined) pos = str.length;
+            for (var i = pos; i > 0; i--) {
+                for (var j = 0; j < chars.length; j++) {
+                    if (str[i] == chars[j]) {
+                        return i + 1;
+                    }
                 }
             }
+            return -1;
         }
-        return -1;
-    }
 
-    function index(str, chars, pos) {
-        if (pos === undefined) pos = 0
-        for (var i = pos; i < str.length; i++) {
-            for (var j = 0; j < chars.length; j++) {
-                if (str[i] == chars[j]) {
-                    return i + 1;
+        function index(str, chars, pos) {
+            if (pos === undefined) pos = 0
+            for (var i = pos; i < str.length; i++) {
+                for (var j = 0; j < chars.length; j++) {
+                    if (str[i] == chars[j]) {
+                        return i + 1;
+                    }
                 }
             }
+            return -1;
         }
-        return -1;
     }
 
 </script>
