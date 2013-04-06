@@ -59,20 +59,24 @@
       
       $(document).ready(function() {
           var CR = 13;
+          var loader = new EntryLoader($('#container'));
+          var chart = new BubbleChart('#vis', loader);
+          chart.init();
   
           $('#word').keydown(function(e) {
               if (e.keyCode == CR) {
-                  renderWordEntries(this.value);
-                  clearTextbox(this);
+                var word = this.value;
+                chart.addWord(word);
+                renderWordEntries(word);
+                clearTextbox(this);
               }
   
               function renderWordEntries(word) {
-                  var loader = new EntryLoader($('#container'));
-                  loader.renderWordEntries(word);
+                loader.renderWordEntries(word);
               }
   
               function clearTextbox(textbox) {
-                  textbox.value = "";
+                textbox.value = "";
               }
           });
       });
