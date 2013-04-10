@@ -3,39 +3,6 @@
   position: relative;
 }
 
-#g-form-container {
-  position: relative;
-}
-
-#g-form {
-  font: 16px sans-serif;
-  position: absolute;
-  right: 40px;
-  top: -47px;
-}
-
-#g-form input {
-  border-right: none;
-  border-radius: 3px 0 0 3px;
-  border: solid 1px #ccc;
-  font: inherit;
-  padding: 4px 8px;
-  width: 223px;
-}
-
-#g-form button {
-  background: #004276;
-  border: none;
-  border-radius: 0 3px 3px 0;
-  color: #fff;
-  font: inherit;
-  font-weight: bold;
-  padding: 5px 8px;
-  position: relative;
-  top: 1px;
-  width: 30px;
-}
-
 .g-error {
   background: #ffa;
   border: solid 1px #ccc;

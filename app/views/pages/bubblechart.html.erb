@@ -23,8 +23,16 @@
                 <option value="4_lexislatura">4º lexislatura</option>
             </select>
 
+            <!--
             <div style="float: right">
                 <input id="word" type="text" size="32" style="padding: 3px" placeholder="Engadir palabra"/>
+            </div>
+            -->
+
+            <div id="g-form-container" style="float: right">
+                <form id="g-form">
+                    <input type="text" name="search" placeholder="Engadir palabra" tabindex="1"><button>+</button>
+                </form>
             </div>
         </div>
     </div>
@@ -32,11 +40,6 @@
     <div style="clear: both"></div>
 
     <!-- Bubble chart -->
-    <div id="g-form-container">
-        <form id="g-form">
-            <input type="text" name="search" placeholder="Add word or phrase" tabindex="1"><button>+</button>
-        </form>
-    </div>
     <p><div id="g-chart">
         <svg class="g-nodes" width="970" height="500"></svg>
         <div class="g-labels"></div>
