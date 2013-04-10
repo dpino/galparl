@@ -143,6 +143,45 @@ function linkTopic(a) {
 // Returns the topic matching the specified name, approximately.
 // If no matching topic is found, returns undefined.
 function findTopic(name) {
+  for (var i = 0, n = data.topics.length, t; i < n; ++i) {
+    if ((t = data.topics[i]).name === name || new RegExp("^" + (t = data.topics[i]).re.source + "$", "i").test(name)) {
+      return t;
+    }
+  }
+}
+
+// Returns the topic matching the specified name, approximately.
+// If no matching topic is found, a new one is created.
+function findOrAddTopic(name) {
+  var topic = findTopic(name);
+  if (!topic) {
+    data.topic(capitalize(name), function(topic) {
+        topic.x = 200;
+        topic.y = 0;
+        updateTopics(data.topics);
+
+        return topic;
+    });
+  }
+  return topic;
+
+  function capitalize(name) {
+    return name.substring(0, 1).toUpperCase() + name.substring(1);
+  }
+}
+
+data.topic = function(name, cb) {
+    $.get('/word_counts/' + name + '.json', function(topic) {
+        topic.name = topic.word;
+        data.topics.push(topic);
+        cb(topic);
+    });
+};
+
+/*
+// Returns the topic matching the specified name, approximately.
+// If no matching topic is found, returns undefined.
+function findTopic(name) {
     for (var i = 0; i < data.topics.length; i++) {
         if (data.topics[i].name == name) {
             return data.topics[i];
@@ -155,12 +194,13 @@ function findTopic(name) {
 function findOrAddTopic(name) {
   var topic = findTopic(name);
   if (topic) {
-    topic.x = width - 40;
+    topic.x = 200;
     topic.y = 0;
     updateTopics(data.topics);
   }
   return topic;
 }
+*/
 
 // Simulate forces and update node and label positions on tick.
 function tick(e) {
@@ -233,19 +273,17 @@ function hashchange() {
 }
 
 // Trigger a hashchange on submit.
+//function submit() {
+  //d3.event.preventDefault();
+  //retrieveWord(this.search);
+//}
+
+// Trigger a hashchange on submit.
 function submit() {
   d3.event.preventDefault();
-  retrieveWord(this.search);
-}
-
-function retrieveWord(search) {
-    var name = search.value.trim();
-    $.get('/word_counts/' + name + '.json', function(topic) {
-        topic.name = topic.word;
-        data.topics.push(topic);
-        location.hash = name ? encodeURIComponent(name) : "!";
-        search.value = "";
-    });
+  var name = this.search.value.trim();
+  location.hash = name ? encodeURIComponent(name) : "!";
+  this.search.value = "";
 }
 
 // Clear the active topic when clicking on the chart background.
