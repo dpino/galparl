@@ -18,7 +18,7 @@ EntryLoader.prototype.renderWordEntries = function(word) {
     $.get(url, function(data) {
         entryLoader.clear();
         if (data.error) {
-            this.emptyResult(data.error);
+            entryLoader.emptyResult(data.error);
             return;
         }
         var left = $("<div class='left'></div>");

@@ -13,4 +13,5 @@
 
 //= require jquery
 //= require jquery_ujs
-//= require_tree .
+//= require libs/d3.v3.min.js
+//= jquery-1.7.2.min.js
