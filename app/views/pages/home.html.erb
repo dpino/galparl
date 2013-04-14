@@ -1,2 +1,69 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<style type="text/css">
+    p.title {
+        font-weight: bold;
+    }
+
+</style>
+
+Para ir al bubblechart, pulse <a href="/bubblechart">aquí</a>
+
+<h1>API::Diario de Sesiones del Parlamento Galicia</h1>
+
+<ul>
+    <li>
+        <p class="title">GET /word_counts/:palabra:.:format:</p> 
+        <p>Número de repeticiones de una palabra</p>
+        <p>Formatos: <i>xml</i>, <i>json</i>
+        <pre>
+        $curl localhost:3000/word_counts/folga.json
+
+        {"count":48,"created_at":"2013-03-20T16:35:45Z","id":8648,"updated_at":"2013-03-20T16:35:45Z","word":"folga"}
+        </pre>
+    </li>
+</ul>
+
+<ul>
+    <li>
+        <p class="title">GET /word_indices/:palabra:.:format:</p> 
+        <p>Ids de las entradas donde aparece la palabra. El campo <i>indice</i> es una colección de referencias al campo <i>numid</i> de la tabla <i>entries</i></p>
+        <p>Formatos: <i>xml</i>, <i>json</i>
+        <pre>
+        curl localhost:3000/word_indices/folga.json
+
+        {"created_at":"2013-03-20T16:35:50Z","id":8648,"indice":"6915,6915,6915,6915,6915,14170,1752,1752,543,9196,1752,14150,14150,
+        17499,14249,8365,7989,45,14184,14184,14184,14184,5991,17102,13941,13941,12948,3719,6437,13958,16798,262,6923,8363,7768,7768,
+        97,97,4759,4527,258,258,258,13550,258,17110,919,17447","updated_at":"2013-03-20T16:35:50Z","word":"folga"}
+        </pre>
+    </li>
+</ul>
+
+<ul>
+    <li>
+        <p class="title">GET /words/:palabra:.:format:</p> 
+        <p>Resumen de información sobre una palabra</p>
+        <p>Formatos: <i>xml</i>, <i>json</i>
+        <pre>
+        curl localhost:3000/words/pokemon.json
+        {"error":"No results found for <i>'pokemon'</i>"}
+
+        curl localhost:3000/words/folga.json
+        {
+            "speakers": {
+                "speaker 1": [entry],
+                "speaker 2": [entry],
+                ...
+                "speaker n": [entry],
+            },
+            "count": number,
+            "word": string
+        }
+
+        entry {
+            "body": string,
+            "date": date,
+            "season": number,
+            "numid": number
+        }
+        </pre>
+    </li>
+</ul>

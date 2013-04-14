@@ -126,26 +126,27 @@ function updateLabels() {
 function updateActiveTopic(topic) {
   if (activeTopic = topic) {
     node.classed("g-selected", function(d) { return d === topic; });
-    d3.select("#g-topic").text((topic.count > maxMentions ? "A sampling of " : topic.count || "No") + " mentions of “" + topic.name + "” in the speeches");
+    d3.select("#g-topic").text(topic.count + " aparicións da palabra '" + topic.name + "'");
   } else {
-    node.classed("g-selected", false);
-    d3.select("#g-topic").text("A sampling of excerpts from the speeches");
+    d3.select("#g-topic").text("");
+    d3.select("#mentions-left").html(null);
+    d3.select("#mentions-right").html(null);
   }
 }
 
 // Assign event handlers to topic links.
 function linkTopic(a) {
-  a   .on("click", click)
-      .on("mouseover", mouseover)
-      .on("mouseout", mouseout);
+  a.on("click", click)
+    .on("mouseover", mouseover)
+    .on("mouseout", mouseout);
 }
 
 // Returns the topic matching the specified name, approximately.
 // If no matching topic is found, returns undefined.
 function findTopic(name) {
   for (var i = 0, n = data.topics.length, t; i < n; ++i) {
-    if ((t = data.topics[i]).name === name || new RegExp("^" + (t = data.topics[i]).re.source + "$", "i").test(name)) {
-      return t;
+    if ((t = data.topics[i]).name === name) {
+        return t;
     }
   }
 }
@@ -177,30 +178,6 @@ data.topic = function(name, cb) {
         cb(topic);
     });
 };
-
-/*
-// Returns the topic matching the specified name, approximately.
-// If no matching topic is found, returns undefined.
-function findTopic(name) {
-    for (var i = 0; i < data.topics.length; i++) {
-        if (data.topics[i].name == name) {
-            return data.topics[i];
-        }
-    }
-}
-
-// Returns the topic matching the specified name, approximately.
-// If no matching topic is found, a new one is created.
-function findOrAddTopic(name) {
-  var topic = findTopic(name);
-  if (topic) {
-    topic.x = 200;
-    topic.y = 0;
-    updateTopics(data.topics);
-  }
-  return topic;
-}
-*/
 
 // Simulate forces and update node and label positions on tick.
 function tick(e) {
@@ -273,12 +250,6 @@ function hashchange() {
 }
 
 // Trigger a hashchange on submit.
-//function submit() {
-  //d3.event.preventDefault();
-  //retrieveWord(this.search);
-//}
-
-// Trigger a hashchange on submit.
 function submit() {
   d3.event.preventDefault();
   var name = this.search.value.trim();
@@ -293,8 +264,104 @@ function clear() {
 
 // Rather than flood the browser history, use location.replace.
 function click(d) {
-  location.replace("#" + encodeURIComponent(d === activeTopic ? "!" : d.name));
   d3.event.preventDefault();
+  if (d !== activeTopic) {
+    refreshMentions(d.name);
+  }
+  location.replace("#" + encodeURIComponent(d === activeTopic ? "!" : d.name));
+}
+
+function keys(hash) {
+    var result = new Array();
+    for (var attr in hash) {
+        result.push(attr);
+    }
+    return result;
+}
+
+function refreshMentions(word) {
+    $.get("/words/" + word + ".json", function(result) {
+        var lMentions = d3.select("#mentions-left");
+        var rMentions = d3.select("#mentions-right");
+
+        lMentions.html(null);
+        rMentions.html(null);
+
+        var speakers = result.speakers,
+            speakerNames = keys(speakers);
+
+        var len = speakerNames.length;
+        var half = len / 2;
+        var i = 0;
+
+        speakerNames.sort();
+        speakerNames.forEach(function(name) {
+            var entries = speakers[name];
+
+            var div;
+            if (i < half) {
+                div = lMentions.append("div")
+                    .attr("class", "mention");
+            } else {
+                div = rMentions.append("div")
+                    .attr("class", "mention");
+            }
+            i++;
+
+            div.append("div")
+                .attr("class", "g-speaker")
+                .text(name);
+
+            div.selectAll("span")
+                .data(entries)
+                .enter()
+                .append("span")
+                .html(function(entry) { 
+                    return "<p>" + formatDate(entry.date) + "</p>" + 
+                        "<p>" + formatBody(entry.body) + "</p>"; 
+                });
+        });
+
+        function formatDate(tstamp) {
+            var format = d3.time.format("%d/%m/%Y");
+            return format(new Date(tstamp * 1000));
+        }
+
+        function formatBody(body) {
+            var pos, start, end;
+
+            pos = body.indexOf(word);
+            end = index(body, ".¡!¿?", pos);
+            end = end != body.length ? end + 1 : end;
+            start = rindex(body, ".¡!¿?", pos);
+            start = start != 0 ? start + 1 : start;
+            return body.substring(start, end).replace(word, "<span style='background: #ccc; padding: 1px 3px'>" + word + "</span>");
+        }
+
+        function index(str, chars, from) {
+            var regex = new RegExp("[" + chars + "]");
+            return from + str.substr(from).search(regex);
+        }
+
+        function rindex(str, chars, from) {
+            for (var i = from; i > 0; i--) {
+                for (var j = 0; j < chars.length; j++) {
+                    if (str[i] == chars[j]) {
+                        return i;
+                    }
+                }
+            }
+            return 0;
+        }
+
+    });
+}
+
+function format(date, body) {
+    var html = new Array();
+    html.push("<div>" + date + "<div>");
+    html.push("<div>" + body + "<div>");
+    return "<div>" + html.join("\n") + "</div>";
 }
 
 // When hovering the label, highlight the associated node and vice versa.
